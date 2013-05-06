@@ -36,4 +36,9 @@ $include-html-rhythm-classes: true !default;
 		margin: 0;
 		margin-bottom: $base-em;
 	}
+	ul{
+	li:not(:first-child) {
+			margin-top: 1em;
+		}
+	}
 }
