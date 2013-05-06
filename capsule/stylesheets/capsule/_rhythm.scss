@@ -1,0 +1,39 @@
+//Author: Levi Schuck
+//License: MIT
+// Used to help rhythm in design
+$base-em: 16px !default;
+$header-max-factor: 2.0 !default;
+$header-div-factor: 1.05 !default;
+$include-html-rhythm-classes: true !default;
+
+@if $include-html-rhythm-classes != false {
+	html {
+		font-size: $base-em;
+	}
+	@for $i from 1 through 6 {
+		$h: max($header-max-factor / ($header-div-factor * ($i - 1)), 1);
+		@if $i == 1 {
+			$h: $header-max-factor;
+		}
+		$height: ceil($h) * $base-em;
+		$font: $h * $base-em;
+		$top: $height - $font;
+		$half-top: $top / 2;
+		$real-top: $half-top;
+		$full: ceil(($real-top + $height) / $base-em) * $base-em;
+		$bot: $full - ($real-top + $height);
+		@if $height > $base-em and $bot == 0px {
+			$bot: $base-em;
+		}
+		h#{$i} {
+			line-height: $height;
+			font-size: $font;
+			margin-top: $real-top;
+			margin-bottom: $bot;
+		}
+	}
+	p {
+		margin: 0;
+		margin-bottom: $base-em;
+	}
+}
